@@ -1,0 +1,40 @@
+* {
+  font-size: 24px;
+  line-height: 2rem;
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+header {
+  justify-content: space-between;
+}
+
+a {
+  text-decoration: none;
+}
+
+header,
+#start-quiz {
+  display: flex;
+}
+
+#start-quiz {
+  flex-direction: column;
+  align-items: center;
+}
+
+#start-quiz p {
+  width: 70%;
+}
