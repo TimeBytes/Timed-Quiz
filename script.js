@@ -33,50 +33,88 @@ const listOfQuestions = [
     answer: "Console.log",
   },
 ];
-
-var section = document.querySelector("#start-quiz");
+var score = 0;
+var userAnswer = [];
 var currentQuestion = 0;
-
-function displayOptions(index) {
-  var orderedList = document.createElement("ol");
-  section.appendChild(orderedList);
-  for (let i = 0; i < 4; i++) {
-    var displayOption = document.createElement("li");
-    displayOption.setAttribute("class", "quiz-options");
-    displayOption.textContent = listOfQuestions[index].options[i];
-    orderedList.appendChild(displayOption);
-  }
-  currentQuestion++;
-  addClickEvent();
-}
-
-function nextQuestion() {
-  section.textContent = "";
-  var displayQuestion = document.createElement("h2");
-  displayQuestion.textContent = listOfQuestions[currentQuestion].question;
-  section.appendChild(displayQuestion);
-  displayOptions(currentQuestion);
-}
-
+var startTime = 90;
+var countDown = document.querySelector("#timer");
 var start = document.querySelector("button");
-start.addEventListener("click", function () {
-  nextQuestion();
-});
+var questionH2 = document.createElement("h2");
+var section = document.querySelector("#start-quiz");
+var quizQuestion = document.createElement("h2");
+var orderedList = document.createElement("ol");
 
-function addClickEvent() {
-  var selectAnswer = document.querySelectorAll("li");
-  selectAnswer.forEach(createClickEvent);
-  function createClickEvent(eachSelectAnswer) {
-    eachSelectAnswer.addEventListener("click", function (event) {
-      console.log(currentQuestion);
-      console.log("this is the length of list " + listOfQuestions.length);
-      if (currentQuestion < listOfQuestions.length) {
-        nextQuestion();
-      } else {
-        section.textContent = "";
-      }
-    });
+function displayQuestion() {
+  section.textContent = "";
+  orderedList.textContent = "";
+  if (currentQuestion < listOfQuestions.length) {
+    quizQuestion.textContent = listOfQuestions[currentQuestion].question;
+    section.appendChild(quizQuestion);
+    section.appendChild(orderedList);
+    for (let i = 0; i < listOfQuestions[currentQuestion].options.length; i++) {
+      var quizOptions = document.createElement("li");
+      quizOptions.setAttribute("class", "quiz-options");
+      quizOptions.textContent = listOfQuestions[currentQuestion].options[i];
+      orderedList.appendChild(quizOptions);
+    }
+    var selectAnswer = document.querySelectorAll("li");
+    selectAnswer.forEach(createClickEvent);
+    function createClickEvent(eachSelectAnswer) {
+      eachSelectAnswer.addEventListener("click", function (event) {
+        currentQuestion++;
+        userAnswer.push(event.target.textContent);
+        displayQuestion();
+      });
+    }
+  } else {
+    displayEnterName();
   }
 }
+function userScore() {
+  for (let i = 0; i < userAnswer.length; i++) {
+    console.log(userAnswer[i] == listOfQuestions[i].answer);
+    if (userAnswer[i] == listOfQuestions[i].answer) {
+      score++;
+    }
+  }
+  score = (score / userAnswer.length) * 100;
+}
 
-function checkAnswers(event) {}
+function displayEnterName() {
+  var allDone = document.createElement("h2");
+  var yourScore = document.createElement("p");
+  var enterInitals = document.createElement("p");
+  var formInput = document.createElement("form");
+  var input = document.createElement("input");
+  var submit = document.createElement("button");
+  input.setAttribute("type", "text");
+  allDone.textContent = "All Done!";
+  userScore();
+  yourScore.textContent = " Your final score is " + score + "%";
+  section.appendChild(allDone);
+  section.appendChild(yourScore);
+  enterInitals.textContent = "Enter initals: ";
+  section.appendChild(enterInitals);
+  formInput.setAttribute("style", "display:inline-block; height:34px;");
+  enterInitals.appendChild(formInput);
+  input.setAttribute("style", "height:30px;");
+  formInput.appendChild(input);
+  submit.setAttribute(
+    "style",
+    "display:inline-block; padding: 15px; line-height:0px;"
+  );
+  submit.textContent = "Submit";
+  enterInitals.appendChild(submit);
+}
+
+function timer() {
+  setInterval(function () {
+    countDown.textContent = "Time: " + startTime;
+    startTime--;
+  }, 1000);
+}
+
+start.addEventListener("click", function () {
+  displayQuestion();
+  timer();
+});
