@@ -38,19 +38,21 @@ var userAnswer = [];
 var currentQuestion = 0;
 var startTime = 90;
 var countDown = document.querySelector("#timer");
-var start = document.querySelector("button");
+var start = document.querySelector("#start");
 var questionH2 = document.createElement("h2");
 var section = document.querySelector("#start-quiz");
 var quizQuestion = document.createElement("h2");
 var orderedList = document.createElement("ol");
+var highscores = document.querySelector("#highscores");
 
 function displayQuestion() {
-  section.textContent = "";
+  section.dataset.state = "hidden";
+  var quizSection = document.querySelector("#quiz-section");
   orderedList.textContent = "";
   if (currentQuestion < listOfQuestions.length) {
     quizQuestion.textContent = listOfQuestions[currentQuestion].question;
-    section.appendChild(quizQuestion);
-    section.appendChild(orderedList);
+    quizSection.appendChild(quizQuestion);
+    quizSection.appendChild(orderedList);
     for (let i = 0; i < listOfQuestions[currentQuestion].options.length; i++) {
       var quizOptions = document.createElement("li");
       quizOptions.setAttribute("class", "quiz-options");
@@ -67,6 +69,7 @@ function displayQuestion() {
       });
     }
   } else {
+    quizSection.textContent = "";
     displayEnterName();
   }
 }
@@ -81,30 +84,18 @@ function userScore() {
 }
 
 function displayEnterName() {
-  var allDone = document.createElement("h2");
-  var yourScore = document.createElement("p");
-  var enterInitals = document.createElement("p");
-  var formInput = document.createElement("form");
-  var input = document.createElement("input");
-  var submit = document.createElement("button");
-  input.setAttribute("type", "text");
-  allDone.textContent = "All Done!";
+  var enterInitials = document.querySelector("#enter-initals");
+  enterInitials.dataset.state = "visible";
+  var finalScore = document.querySelector(".final-score");
   userScore();
-  yourScore.textContent = " Your final score is " + score + "%";
-  section.appendChild(allDone);
-  section.appendChild(yourScore);
-  enterInitals.textContent = "Enter initals: ";
-  section.appendChild(enterInitals);
-  formInput.setAttribute("style", "display:inline-block; height:34px;");
-  enterInitals.appendChild(formInput);
-  input.setAttribute("style", "height:30px;");
-  formInput.appendChild(input);
-  submit.setAttribute(
-    "style",
-    "display:inline-block; padding: 15px; line-height:0px;"
-  );
-  submit.textContent = "Submit";
-  enterInitals.appendChild(submit);
+  finalScore.textContent = "Your final score is: " + score + "%";
+  var submit = document.querySelector("#submit");
+  submit.addEventListener("click", function (event) {
+    event.preventDefault();
+    var textInput = document.querySelector("input").value;
+    enterInitials.dataset.state = "hidden";
+    highscores.dataset.state = "visible";
+  });
 }
 
 function timer() {
@@ -115,6 +106,7 @@ function timer() {
 }
 
 start.addEventListener("click", function () {
+  console.log("hello");
   displayQuestion();
   timer();
 });

@@ -13,14 +13,35 @@
       <a href="#">Your Highscores</a>
       <p id="timer">Time: 90</p>
     </header>
-    <section id="start-quiz">
+    <section id="start-quiz" data-state="visible">
       <h1>Coding Quiz Challenge</h1>
       <p>
         Try to answer the following code-related questions within the time
         limit. Keep in mind that incorrect answers will penalize your score/time
         by ten seconds
       </p>
-      <button>Start Quiz</button>
+      <button id="start">Start Quiz</button>
+    </section>
+    <section id="enter-initals" data-state="hidden">
+      <h2>All Done!</h2>
+      <p class="final-score">Your final score is:</p>
+      <p id="text-input">Enter initials:</p>
+      <form>
+        <input type="text" />
+        <button id="submit">Submit</button>
+      </form>
+    </section>
+    <section id="quiz-section"></section>
+    <section id="highscores" data-state="hidden">
+      <h2>Highscores</h2>
+      <ol>
+        <li>AZ - 60%</li>
+        <li>AZ - 100%</li>
+      </ol>
+      <div>
+        <button>Go Back</button>
+        <button>Clear Highscores</button>
+      </div>
     </section>
     <script src="script.js"></script>
   </body>
