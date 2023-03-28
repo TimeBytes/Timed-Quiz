@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <a href="#">Your Highscores</a>
+      <a href="#" id="check-highscores">Your Highscores</a>
       <p id="timer">Time: 90</p>
     </header>
     <section id="start-quiz" data-state="visible">
@@ -34,15 +34,12 @@
     <section id="quiz-section"></section>
     <section id="highscores" data-state="hidden">
       <h2>Highscores</h2>
-      <ol>
-        <li>AZ - 60%</li>
-        <li>AZ - 100%</li>
-      </ol>
+      <ol id="highscore-list"></ol>
       <div>
-        <button>Go Back</button>
-        <button>Clear Highscores</button>
+        <button id="go-back">Go Back</button>
+        <button id="clear-highscores">Clear Highscores</button>
       </div>
     </section>
-    <script src="script.js"></script>
+    <script src="./assets/script.js"></script>
   </body>
 </html>

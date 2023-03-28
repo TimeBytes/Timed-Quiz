@@ -1,5 +1,6 @@
 :root {
   --button-color: #442c66;
+  --button-color-hover: #715499;
   --text-with-background: white;
 }
 
@@ -49,6 +50,10 @@ button {
   color: var(--text-with-background);
   background-color: var(--button-color);
   border-radius: 10px;
+}
+
+button:hover {
+  background-color: var(--button-color-hover);
 }
 
 form {
@@ -107,4 +112,8 @@ input {
   color: var(--text-with-background);
   border-radius: 10px;
   list-style-position: inside;
+}
+
+.quiz-options:hover {
+  background-color: var(--button-color-hover);
 }
