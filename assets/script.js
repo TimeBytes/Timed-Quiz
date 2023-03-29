@@ -181,7 +181,7 @@ goBackButton.addEventListener("click", function () {
   currentQuestion = 0;
   score = 0;
   startTime = 60;
-  counDownEl.textContent = "Time: " + startTime;
+  counDownEl.textContent = "Time: " + startTime + " second(s)";
   startQuizEl.dataset.state = "visible";
   highscoresEl.dataset.state = "hidden";
   headerEl.dataset.state = "visible";
