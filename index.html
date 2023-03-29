@@ -9,10 +9,12 @@
     <title>Timed Quiz</title>
   </head>
   <body>
-    <header>
+    <!-- header container with link to highscore and timer -->
+    <header id="header-container" data-state="visible">
       <a href="#" id="check-highscores">Your Highscores</a>
-      <p id="timer">Time: 90</p>
+      <p id="timer">Time: 60 second(s)</p>
     </header>
+    <!-- displays the instructions and a button to start -->
     <section id="start-quiz" data-state="visible">
       <h1>Coding Quiz Challenge</h1>
       <p>
@@ -22,6 +24,9 @@
       </p>
       <button id="start">Start Quiz</button>
     </section>
+    <!-- container for the quiz questions -->
+    <section id="quiz-section" data-state="hidden"></section>
+    <!-- container for the page to enter initals -->
     <section id="enter-initals" data-state="hidden">
       <h2>All Done!</h2>
       <p class="final-score">Your final score is:</p>
@@ -31,7 +36,11 @@
         <button id="submit">Submit</button>
       </form>
     </section>
-    <section id="quiz-section"></section>
+    <!-- container to display if user option was correct or not -->
+    <section id="is-answer" data-state="hidden">
+      <p></p>
+    </section>
+    <!-- container for highscore -->
     <section id="highscores" data-state="hidden">
       <h2>Highscores</h2>
       <ol id="highscore-list"></ol>

@@ -3,7 +3,7 @@
   --button-color-hover: #715499;
   --text-with-background: white;
 }
-
+/* style applied to page */
 * {
   font-size: 24px;
   line-height: 2rem;
@@ -29,18 +29,15 @@ a {
 }
 
 header {
-  display: flex;
   justify-content: space-between;
-  width: 100%;
 }
 body {
-  display: flex;
   flex-direction: column;
   align-items: center;
 }
 
 ol {
-  margin-left: 5%;
+  margin-left: 2%;
 }
 
 button {
@@ -64,56 +61,79 @@ form {
 input {
   height: 45px;
 }
-#start-quiz p {
+
+/* display flex */
+header,
+body,
+#quiz-section {
+  display: flex;
+}
+
+/* 100% width */
+#enter-initals > :first-child,
+#enter-initals > :nth-child(2),
+#highscores h2,
+header {
+  width: 100%;
+}
+
+/* 70% width */
+#is-answer,
+#highscores,
+#start-quiz,
+#start-quiz p,
+#enter-initals,
+#quiz-section {
   width: 70%;
 }
 
-[data-state="hidden"] {
-  display: none;
+/* style for the quiz options and the highscores */
+.quiz-options,
+#highscore-list li {
+  /* extends the background color to the ordered list numbers */
+  list-style-position: inside;
+  padding: 5px 10px 5px 10px;
+  margin: 10px 0px 10px 0px;
+  color: var(--text-with-background);
+  border-radius: 10px;
 }
 
+/* color of the background on button hover, reused same color for highscore list */
+.quiz-options:hover,
+#highscore-list li {
+  background-color: var(--button-color-hover);
+}
+
+/* hides the container if data state is hidden, display is none */
+[data-state="hidden"] {
+  display: none !important;
+}
+/* shows the container if data state is visible, display flex */
 [data-state="visible"] {
-  display: flex;
+  display: flex !important;
 }
 
 #start-quiz {
   flex-direction: column;
   align-items: center;
-  width: 70%;
-}
-#enter-initals {
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 70%;
-}
-
-#enter-initals > :first-child,
-#enter-initals > :nth-child(2) {
-  width: 100%;
-}
-#highscores {
-  width: 70%;
-  flex-direction: column;
-}
-
-#highscores h2 {
-  width: 100%;
 }
 
 #quiz-section {
-  display: flex;
   flex-wrap: wrap;
-  width: 70%;
 }
 .quiz-options {
   background-color: var(--button-color);
-  padding: 5px 10px 5px 15px;
-  margin: 10px;
-  color: var(--text-with-background);
-  border-radius: 10px;
-  list-style-position: inside;
 }
 
-.quiz-options:hover {
-  background-color: var(--button-color-hover);
+#enter-initals {
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#highscores {
+  flex-direction: column;
+}
+
+#is-answer {
+  border-top: gray solid;
 }
